@@ -187,10 +187,8 @@ def find_optimal_config(model, param_grid, param_names, target_metric, return_sc
             set_config(model, param_config)
             if not model._is_ready or force_build:
                 model.build()
-            try:
-                grid_results[params] = evaluator(model, target_metric, **kwargs)[model.method]
-            except:
-                pass
+            grid_results[params] = evaluator(model, target_metric, **kwargs)[model.method]
+            
         finally:
             if reset_config is not None:
                 if isinstance(reset_config, dict):
